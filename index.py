@@ -56,11 +56,12 @@ def getData(folder, reg):
 def getContent():
     monthFolder= input("input directory untuk dijadikan laporan : ") # "./agustus"
     subdir = get_immediate_subdirectories(monthFolder)
-    print(subdir)
+    # print(subdir)
     res = []
     for folder in subdir:
         tanggal = getData(folder, '\d+-\d+-\d+ (\d+.\d+.\d+.)?')
-        nama_acara = getData(folder, '[a-zA-Z\s]+') #masih harus disempurnakan
+        # masih harus disempurnakan
+        nama_acara = getData(folder, '([a-zA-Z]+\s?)+')
         tempat = getData(folder, '(?<=di).+')
         # get the image from every sub dir
         
