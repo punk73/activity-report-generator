@@ -53,7 +53,7 @@ def getData(folder, reg):
         return ''
 
 def getContent():
-    monthFolder= "./agustus"
+    monthFolder= input("input directory untuk dijadikan laporan : ") # "./agustus"
     subdir = get_immediate_subdirectories(monthFolder)
     res = []
     for folder in subdir:
