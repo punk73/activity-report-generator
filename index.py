@@ -19,6 +19,7 @@ def generate():
     ]}
 
     context = getContent()
+    print(context)
     for c in context:
         tmp = []
         for img in c['images']:
@@ -55,6 +56,7 @@ def getData(folder, reg):
 def getContent():
     monthFolder= input("input directory untuk dijadikan laporan : ") # "./agustus"
     subdir = get_immediate_subdirectories(monthFolder)
+    print(subdir)
     res = []
     for folder in subdir:
         tanggal = getData(folder, '\d+-\d+-\d+ (\d+.\d+.\d+.)?')
@@ -81,5 +83,4 @@ def getContent():
     # for every sub folder, get tanggal, tempat, dan judul acara di foldername
     #get photo and list tamu di dalam folder tersebut.
 # print(getContent())
-g = generate()
-print(g)
+generate()
