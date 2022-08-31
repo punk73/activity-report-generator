@@ -23,13 +23,13 @@ def generate():
     for c in context:
         tmp = []
         for img in c['images']:
-            tmp.append(InlineImage(doc, img, Mm(120), Mm(80)))
+            tmp.append(InlineImage(doc, img, Mm(100), Mm(54)))
         if tmp :            
             c['images'] = tmp
         else :
             c['images'] = ["-"]
         if c['daftar_tamu'] :
-            dft = InlineImage(doc, c['daftar_tamu'], Mm(120), Mm(80))
+            dft = InlineImage(doc, c['daftar_tamu'], Mm(100), Mm(54))
             c['daftar_tamu'] = dft
         else:
             c['daftar_tamu'] = '-'
