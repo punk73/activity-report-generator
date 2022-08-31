@@ -19,12 +19,15 @@ def generate():
     ]}
 
     context = getContent()
-    print(context)
+    # print(context)
     for c in context:
         tmp = []
         for img in c['images']:
-            tmp.append(InlineImage(doc, img, Mm(120), Mm(80)))            
-        c['images'] = tmp
+            tmp.append(InlineImage(doc, img, Mm(120), Mm(80)))
+        if tmp :            
+            c['images'] = tmp
+        else :
+            c['images'] = ["-"]
         if c['daftar_tamu'] :
             dft = InlineImage(doc, c['daftar_tamu'], Mm(120), Mm(80))
             c['daftar_tamu'] = dft
@@ -32,6 +35,7 @@ def generate():
             c['daftar_tamu'] = '-'
 
     context = {"data" : context}
+    print(context)
     doc.render(context)
     doc.save("generated_doc.docx")
 
