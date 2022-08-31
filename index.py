@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 from docxtpl import DocxTemplate, InlineImage
 from docx.shared import Mm
@@ -37,7 +38,8 @@ def generate():
     context = {"data" : context}
     print(context)
     doc.render(context)
-    doc.save("generated_doc.docx")
+    bulan = datetime.today().strftime("%B-%Y")
+    doc.save(f"LAPORAN KEGIATAN BALEPRASUTI SINGAPERBANGSA BULAN {bulan}.docx")
 
     print("Docx Generated!")
 
@@ -53,7 +55,7 @@ def getData(folder, reg):
     res = re.search(reg, folder)
     if res:
         res = res.group(0)
-        return res
+        return res.strip()
     else:
         return ''
 
@@ -64,6 +66,10 @@ def getContent():
     res = []
     for folder in subdir:
         tanggal = getData(folder, '\d+-\d+-\d+ (\d+.\d+.\d+.)?')
+        try:
+            tanggal = datetime.strptime(tanggal, "%Y-%m-%d").strftime("%A, %d %B %Y")
+        except:
+            tanggal = tanggal
         # masih harus disempurnakan
         nama_acara = getData(folder, '([a-zA-Z]+\s?)+')
         tempat = getData(folder, '(?<=di).+')
