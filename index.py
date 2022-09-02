@@ -5,6 +5,30 @@ from docx.shared import Mm
 import re
 import glob
 
+def renderTanggal(tgl):
+    # print(tgl)
+    # make sure it is tanggal
+    result = tgl
+    if (len(tgl) > 10):
+        tgl = tgl[:10]
+    try:
+        dt = datetime.strptime(tgl, "%Y-%m-%d")
+    except:
+        return result
+
+    days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']
+    months = ['empty','Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli','Agustus','September', 'Oktober', 'November', 'Desember']
+    day = dt.weekday()
+    month = dt.month
+    hari = days[day]
+    tanggal = dt.day
+    bulan = months[month]
+    tahun = dt.year
+    result = f"{hari}, {tanggal} {bulan} {tahun}"
+    # print(result)
+    return result
+
+
 def generate():
     doc = DocxTemplate("TEMPLATE LAPORAN KEGIATAN.docx")
     context = {
@@ -24,13 +48,13 @@ def generate():
     for c in context:
         tmp = []
         for img in c['images']:
-            tmp.append(InlineImage(doc, img, Mm(100), Mm(54)))
+            tmp.append(InlineImage(doc, img, height= Mm(54)))
         if tmp :            
             c['images'] = tmp
         else :
             c['images'] = ["-"]
         if c['daftar_tamu'] :
-            dft = InlineImage(doc, c['daftar_tamu'], Mm(100), Mm(54))
+            dft = InlineImage(doc, c['daftar_tamu'], height= Mm(54))
             c['daftar_tamu'] = dft
         else:
             c['daftar_tamu'] = '-'
@@ -67,7 +91,8 @@ def getContent():
     for folder in subdir:
         tanggal = getData(folder, '\d+-\d+-\d+ (\d+.\d+.\d+.)?')
         try:
-            tanggal = datetime.strptime(tanggal, "%Y-%m-%d").strftime("%A, %d %B %Y")
+            tanggal = renderTanggal(tanggal)
+            # tanggal = datetime.strptime(tanggal, "%Y-%m-%d").strftime("%A, %d %B %Y")
         except:
             tanggal = tanggal
         # masih harus disempurnakan
