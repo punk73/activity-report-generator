@@ -1,6 +1,6 @@
 from datetime import datetime
 import os
-from docxtpl import DocxTemplate, InlineImage
+from docxtpl import *
 from docx.shared import Mm
 import re
 import glob
@@ -58,7 +58,7 @@ def generate():
             c['daftar_tamu'] = dft
         else:
             c['daftar_tamu'] = '-'
-
+    c['page_break'] =  R('\f')
     context = {"data" : context}
     print(context)
     doc.render(context)
