@@ -60,7 +60,7 @@ def generate():
             c['daftar_tamu'] = '-'
     c['page_break'] =  R('\f')
     context = {"data" : context}
-    print(context)
+    # print(context)
     doc.render(context)
     bulan = datetime.today().strftime("%B-%Y")
     doc.save(f"LAPORAN KEGIATAN BALEPRASUTI SINGAPERBANGSA BULAN {bulan}.docx")
@@ -75,13 +75,13 @@ def get_immediate_subdirectories(a_dir):
 
     return sorted(res)
 
-def getData(folder, reg):
+def getData(folder, reg, index=0, defRes = ''):
     res = re.search(reg, folder)
     if res:
-        res = res.group(0)
+        res = res.group(index)
         return res.strip()
     else:
-        return ''
+        return defRes
 
 def getContent():
     monthFolder= input("input directory untuk dijadikan laporan : ") # "./agustus"
@@ -96,8 +96,9 @@ def getContent():
         except:
             tanggal = tanggal
         # masih harus disempurnakan
-        nama_acara = getData(folder, '([a-zA-Z]+\s?)+')
-        tempat = getData(folder, '(?<=di).+')
+        nama_acara = getData(folder, '(?:\d{4}-\d{2}-\d{2}(?:\s+\d{2}\.\d{2}\.\d{2})?\s+)?(.+)', 1)
+        # print(nama_acara)
+        tempat = getData(folder, '(?<= di | Di | DI | dI ).+', defRes='Zoom Meeting')
         # get the image from every sub dir
         
         image_list = []
