@@ -104,8 +104,10 @@ def getContent():
         for filename in [glob.glob(monthFolder +'/'+ folder+'/*.%s' % ext) for ext in ["jpg","png","jpeg"]]: #assuming gif
             if filename:
                 image_list = filename
+
         
-        daftarTamu = monthFolder + '/' + folder+'/daftar_tamu.png' if os.path.isfile(monthFolder + '/' + folder+'/daftar_tamu.png') else False
+        daftarTamuFileName = 'daftar_hadir.png'
+        daftarTamu = monthFolder + '/' + folder+'/'+ daftarTamuFileName if os.path.isfile(monthFolder + '/' + folder+'/'+daftarTamuFileName) else False
 
         res.append({
             'tanggal' : tanggal,
