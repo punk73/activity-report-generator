@@ -40,10 +40,17 @@ def get_posts_from_account(username, month, year):
         # L.context.load_cookiejar('cookies.txt')
         
         # this should be 
-        L.load_session_from_file('teguh_setiawan73')
+        # L.load_session_from_file('teguh_setiawan73')
 
         profile = instaloader.Profile.from_username(L.context, username)
-        posts = profile.get_posts()
+        # posts = profile.get_posts()
+
+
+        posts = instaloader.Profile.from_username(L.context, "instagram").get_posts()
+
+        SINCE = datetime(2015, 5, 1)
+        UNTIL = datetime(2015, 3, 1)
+
 
         # Pastikan direktori images/ ada
         create_directory_if_not_exists('images')
