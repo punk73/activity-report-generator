@@ -4,6 +4,7 @@ from docxtpl import *
 from docx.shared import Mm
 import re
 import glob
+from cover import insert_dates_and_places_in_existing_table
 
 def renderTanggal(tgl):
     # print(tgl)
@@ -30,7 +31,7 @@ def renderTanggal(tgl):
 
 
 def generate():
-    doc = DocxTemplate("TEMPLATE LAPORAN KEGIATAN.docx")
+    doc = DocxTemplate ("TEMPLATE LAPORAN KEGIATAN.docx")
     context = {
         'data' : [
         { 
@@ -86,17 +87,21 @@ def getData(folder, reg, index=0, defRes = ''):
 def getContent():
     monthFolder= input("input directory untuk dijadikan laporan : ") # "./agustus"
     subdir = get_immediate_subdirectories(monthFolder)
+
+    # monthFolder = input("Input nama folder untuk dijadikan cover: ")
+    doc_path = 'COVER.docx'
+    insert_dates_and_places_in_existing_table(doc_path, monthFolder)
     # print(subdir)
     res = []
     for folder in subdir:
-        tanggal = getData(folder, '\d+-\d+-\d+ (\d+.\d+.\d+.)?')
+        tanggal = getData(folder,  r'\d+-\d+-\d+ (\d+.\d+.\d+.)?')
         try:
             tanggal = renderTanggal(tanggal)
             # tanggal = datetime.strptime(tanggal, "%Y-%m-%d").strftime("%A, %d %B %Y")
         except:
             tanggal = tanggal
         # masih harus disempurnakan
-        nama_acara = getData(folder, '(?:\d{4}-\d{2}-\d{2}(?:\s+\d{2}\.\d{2}\.\d{2})?\s+)?(.+)', 1)
+        nama_acara = getData(folder, r'(?:\d{4}-\d{2}-\d{2}(?:\s+\d{2}\.\d{2}\.\d{2})?\s+)?(.+)', 1)
         # print(nama_acara)
         tempat = getData(folder, '(?<= di | Di | DI | dI ).+', defRes='Zoom Meeting')
         # get the image from every sub dir
