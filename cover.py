@@ -112,9 +112,9 @@ def replace_month_names(doc, month):
     # Mengganti bulan di paragraf
     for para in doc.paragraphs:
         for run in para.runs:
-            if '{{nama_bulan}}' in run.text:
+            if 'nama_bulan' in run.text:
                 found_month_placeholder = True
-                new_text = run.text.replace('{{nama_bulan}}', month)
+                new_text = run.text.replace('nama_bulan', month)
                 run.text = new_text
                 run.font.bold = False
                 run.font.italic = False
@@ -139,9 +139,9 @@ def replace_month_names(doc, month):
             for cell in row.cells:
                 for para in cell.paragraphs:
                     for run in para.runs:
-                        if '{{nama_bulan}}' in run.text:
+                        if 'nama_bulan' in run.text:
                             found_month_placeholder = True
-                            new_text = run.text.replace('{{nama_bulan}}', month)
+                            new_text = run.text.replace('nama_bulan', month)
                             run.text = new_text
                             run.font.bold = False
                             run.font.italic = False
@@ -160,7 +160,7 @@ def replace_month_names(doc, month):
                 is_first_page = False
 
     if not found_month_placeholder:
-        print(f"Placeholder '{{nama_bulan}}' tidak ditemukan dalam dokumen.")  # Debugging
+        print(f"Placeholder \"\{{nama_bulan\}}\" tidak ditemukan dalam dokumen.")  # Debugging
 
 
 
