@@ -4,7 +4,8 @@ from docxtpl import DocxTemplate, InlineImage
 from docx.shared import Mm
 import re
 import glob
-from moviepy.editor import VideoFileClip
+# from moviepy.editor import VideoFileClip
+from moviepy import VideoFileClip
 from cover import insert_dates_and_places_in_existing_table
 
 def renderTanggal(tgl):
