@@ -52,8 +52,8 @@ def generate():
 
     tableTemplate = DocxTemplate('table_template.docx')
     tableTemplate.render(new_data)
-    bulan = datetime.today().strftime("%B-%Y")
-    tableTemplate.save(f"TABLE KEGIATAN TEST {bulan}.docx")
+    bulan = monthFolder.split('/')[-1]  #datetime.today().strftime("%B-%Y")
+    tableTemplate.save(f"TABLE KEGIATAN {bulan}.docx")
     
     context = getContent(monthFolder)
     # print(context)
@@ -82,7 +82,7 @@ def generate():
 
 
     doc.render(context)
-    doc.save(f"LAPORAN KEGIATAN BALEPRASUTI SINGAPERBANGSA BULAN {bulan}.docx")
+    doc.save(f"LAMPIRAN LAPORAN ZOOM BULAN {bulan}.docx")
 
     print("Docx Generated!")
 
