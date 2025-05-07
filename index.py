@@ -229,11 +229,11 @@ def getContentWithoutImages(monthFolder):
     subdir = get_immediate_subdirectories(monthFolder)
 
     # monthFolder = input("Input nama folder untuk dijadikan cover: ")
-    doc_path = 'COVER.docx'
+    # doc_path = 'COVER.docx'
     # we don't really need the cover anymore since jan 2025
     # insert_dates_and_places_in_existing_table(doc_path, monthFolder)
     # print(subdir)
-    res = []
+    result = []
     for folder in subdir:
         tanggal = getData(folder,  r'\d+-\d+-\d+ (\d+.\d+.\d+.)?')
         try:
@@ -246,17 +246,18 @@ def getContentWithoutImages(monthFolder):
         # print(nama_acara)
         tempat = getData(folder, '(?<= di | Di | DI | dI ).+', defRes='Zoom Meeting')
         # get the image from every sub dir
-        
-        
-        res.append({
+        d = {
             'tanggal' : tanggal,
             'nama_acara' : nama_acara,
             'tempat' : tempat,
-        })
-    return res
+        }
+        
+        result.append(d)
+    return result
     # list all sub folder here
     # for every sub folder, get tanggal, tempat, dan judul acara di foldername
     #get photo and list tamu di dalam folder tersebut.
 
 
-generate()
+if __name__ == "__main__":
+    generate()
