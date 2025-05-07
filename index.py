@@ -51,7 +51,7 @@ def generate():
     new_data = {"data": getContentWithoutImages(monthFolder)}
     # new_data = {'data': [{'tanggal': 'Senin, 6 Januari 2025', 'nama_acara': 'Rapat Koordinasi Pengendalian Inflasi Daerah di Command Center', 'tempat': 'Command Center'}, {'tanggal': 'Selasa, 7 Januari 2025', 'nama_acara': 'Koordinasi Tindaklanjut Penyusunan Profil Infrastruktur Penunjang Investasi di Kabupaten Karawang', 'tempat': 'Kabupaten Karawang'}, {'tanggal': 'Rabu, 8 Januari 2025', 'nama_acara': 'Rapat penyelesaian penataan tenaga non ASN di Instansi Pemerintah DAerah', 'tempat': 'Instansi Pemerintah DAerah'}, {'tanggal': 'Kamis, 9 Januari 2025', 'nama_acara': '08-33-16 rapat koordinasi pengendalian inflasi daerah nasional (COMCEN)', 'tempat': 'Zoom Meeting'}, {'tanggal': 'Kamis, 9 Januari 2025', 'nama_acara': 'sosialisasi teknis pengusulan NIPPPK guru', 'tempat': 'Zoom Meeting'}, {'tanggal': 'Jumat, 10 Januari 2025', 'nama_acara': 'Sosialisasi Kamus Usulan Tahun 2026', 'tempat': 'Zoom Meeting'}, {'tanggal': 'Senin, 13 Januari 2025', 'nama_acara': 'Validasi Status Istithaah Kesehatan Jemaah Haji Menjelang Pelunasan BPIH 2025', 'tempat': 'Zoom Meeting'}, {'tanggal': 'Senin, 13 Januari 2025', 'nama_acara': 'rakor dengan kementan untuk kesiapan penanaman jagung serentak 1 juta hektar di lahan perkebunan guna mendukung swasembada pangan 2025', 'tempat': 'lahan perkebunan guna mendukung swasembada pangan 2025'}, {'tanggal': 'Senin, 13 Januari 2025', 'nama_acara': 'rapat koordinasi pengendalian inflasi daerah nasional', 'tempat': 'Zoom Meeting'}, {'tanggal': 'Selasa, 14 Januari 2025', 'nama_acara': 'Orientasi Penyusunan RPJMD Kabupaten Karawang Tahun 2025-2029 dan Penyusunan RKPD Kabupaten Karawang Tahun 2026', 'tempat': 'Zoom Meeting'}, {'tanggal': 'Rabu, 15 Januari 2025', 'nama_acara': 'Rapat Tindak Lanjut Persiapan Gala Diner Kolaborasi Pembangunan Jawa Barat', 'tempat': 'Zoom Meeting'}, {'tanggal': 'Rabu, 15 Januari 2025', 'nama_acara': 'Pendampingan Pelaporan Penurunan Emisi GRK untuk mendukung pencapaian target RPJPD Karawang Tahun 2025 - 2045', 'tempat': 'Zoom Meeting'}, {'tanggal': 'Senin, 20 Januari 2025', 'nama_acara': '08-06-17 Rapat Koordinasi pengendalian Inflasi daerah nasional (COMCEN).mkv', 'tempat': 'Zoom Meeting'}, {'tanggal': 'Selasa, 21 Januari 2025', 'nama_acara': 'TINDAK LANJUT H2H TETEH SIPADI', 'tempat': 'Zoom Meeting'}, {'tanggal': 'Rabu, 22 Januari 2025', 'nama_acara': 'Pemantauan & Validasi Status Istithaah Kesehatan Jemaah Haji Menjelang Pelunasan BPIH 2025', 'tempat': 'Zoom Meeting'}, {'tanggal': 'Rabu, 22 Januari 2025', 'nama_acara': '13-16-09 Launching Hasil Survei Penilaian Integritas (SPI) 2024 (COMCEN)', 'tempat': 'Zoom Meeting'}, {'tanggal': 'Kamis, 23 Januari 2025', 'nama_acara': '09-05-35 Launching Hasil Survei Penilaian Integritas (SPI) 2024 (COMCEN)', 'tempat': 'Zoom Meeting'}, {'tanggal': 'Jumat, 24 Januari 2025', 'nama_acara': 'Pertemuan Persiapan POPM Cacingan Tahun 2025', 'tempat': 'Zoom Meeting'}]}
 
-    print(new_data)
+    # print(new_data)
 
     tableTemplate = DocxTemplate('table_template.docx')
     tableTemplate.render(new_data)
@@ -59,7 +59,7 @@ def generate():
     tableTemplate.save(f"TABLE KEGIATAN {bulan}.docx")
     
     context = getContent(monthFolder)
-    # print(context)
+    print(context)
 
     for c in context:
         tmp = []
